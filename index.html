@@ -1,20 +1,667 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+  <!-- ========== META TAGS - Configurações básicas da página ========== -->
   <meta charset="UTF-8">
+  <!-- Define o conjunto de caracteres como UTF-8 para suportar caracteres especiais -->
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Garante que a página se adapta a diferentes tamanhos de tela (mobile-friendly) -->
+  
   <meta name="description" content="Portfólio profissional de Nelsa Contente, formada em eletricidade instaladora e manutenção.">
+  <!-- Descrição que aparece nos resultados de busca -->
+  
   <title>Nelsa Contente | Portfólio</title>
+  <!-- Título que aparece na aba do navegador -->
+  
+  <!-- ========== FONTES EXTERNAS - Importação do Google Fonts ========== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Estas linhas otimizam o carregamento das fontes do Google -->
+  
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Importa duas famílias de fontes: DM Sans (corpo do texto) e Playfair Display (títulos) -->
+
+  <!-- ========== ESTILOS CSS - Folha de estilos integrada ========== -->
+  <style>
+    /* ===== VARIÁVEIS E ESTILOS GLOBAIS ===== */
+    :root {
+      /* Cores principais do portfólio */
+      --primary-color: #2d3436;      /* Cor escura para textos principais */
+      --accent-color: #ff6b6b;       /* Cor de destaque (vermelho) */
+      --secondary-color: #636e72;    /* Cor cinzenta para textos secundários */
+      --light-color: #f5f6fa;        /* Cor de fundo clara */
+      --white: #ffffff;              /* Branco puro */
+      
+      /* Espaçamento padrão */
+      --spacing-unit: 1rem;          /* Unidade base para espaçamento */
+      
+      /* Tamanhos de fonte */
+      --font-size-small: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-large: 1.25rem;
+      --font-size-xl: 2rem;
+      --font-size-2xl: 3rem;
+    }
+
+    /* ===== RESET CSS - Remove estilos padrão do navegador ===== */
+    * {
+      margin: 0;                     /* Remove margem padrão */
+      padding: 0;                    /* Remove preenchimento padrão */
+      box-sizing: border-box;        /* Inclui bordas e preenchimento no tamanho total */
+    }
+
+    /* ===== ESTILOS DO BODY ===== */
+    body {
+      font-family: 'DM Sans', sans-serif;  /* Define a fonte padrão */
+      color: var(--primary-color);          /* Cor do texto */
+      background-color: var(--white);       /* Cor de fundo branca */
+      line-height: 1.6;                     /* Espaçamento entre linhas para legibilidade */
+      overflow-x: hidden;                   /* Evita scroll horizontal */
+    }
+
+    /* ===== CONTAINER - Centraliza o conteúdo ===== */
+    .container {
+      max-width: 1200px;             /* Largura máxima do conteúdo */
+      margin: 0 auto;                /* Centraliza horizontalmente */
+      padding: 0 2rem;               /* Espaçamento interno nas laterais */
+    }
+
+    /* ===== HEADER E NAVEGAÇÃO ===== */
+    .header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #1e272e 100%);
+      /* Fundo gradiente para visual moderno */
+      color: var(--white);
+      padding-top: 1rem;
+    }
+
+    .nav {
+      display: flex;                 /* Layout flexível */
+      justify-content: space-between; /* Espaça elementos nas extremidades */
+      align-items: center;           /* Alinha verticalmente */
+      padding: 1rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif; /* Fonte elegante para o logo */
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;        /* Remove sublinhado do link */
+      transition: color 0.3s ease;  /* Suave transição ao passar o mouse */
+    }
+
+    .logo:hover {
+      color: var(--accent-color);   /* Muda cor ao passar o mouse */
+    }
+
+    .logo span {
+      color: var(--accent-color);   /* O ponto do logo em cor de destaque */
+    }
+
+    .menu-button {
+      display: none;                /* Botão do menu responsivo (oculto por padrão) */
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;                /* Layout horizontal para os links */
+      list-style: none;             /* Remove as bolinhas da lista */
+      gap: 2rem;                    /* Espaçamento entre links */
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);  /* Links ficam vermelhos ao passar o mouse */
+    }
+
+    /* ===== SEÇÃO HERO (Introdução) ===== */
+    .hero {
+      display: flex;                /* Layout em duas colunas */
+      gap: 3rem;                    /* Espaço entre texto e imagem */
+      align-items: center;
+      padding: 3rem 0;
+      margin-bottom: 4rem;
+    }
+
+    .hero-text {
+      flex: 1;                      /* Ocupa 50% do espaço */
+    }
+
+    .eyebrow {
+      font-size: var(--font-size-small);
+      color: var(--accent-color);
+      font-weight: 600;
+      text-transform: uppercase;    /* Texto em maiúsculas */
+      letter-spacing: 1px;          /* Espaço entre letras */
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--font-size-2xl);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .hero-text h1 span {
+      color: var(--accent-color);  /* Destaca a palavra "Nelsa Contente" */
+    }
+
+    .intro {
+      font-size: var(--font-size-large);
+      color: rgba(255, 255, 255, 0.9); /* Texto branco levemente transparente */
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    /* ===== BOTÕES ===== */
+    .hero-actions {
+      display: flex;                /* Coloca botões lado a lado */
+      gap: 1rem;
+      flex-wrap: wrap;              /* Permite quebra de linha em telas pequenas */
+    }
+
+    .button {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.25rem;       /* Cantos levemente arredondados */
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      border: 2px solid transparent;
+    }
+
+    .button.primary {
+      background-color: var(--accent-color);
+      color: var(--white);
+    }
+
+    .button.primary:hover {
+      transform: translateY(-2px); /* Sobe um pouco ao passar o mouse */
+      box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3); /* Sombra */
+    }
+
+    .button.secondary {
+      color: var(--white);
+      border-color: var(--white);
+      background-color: transparent;
+    }
+
+    .button.secondary:hover {
+      background-color: var(--white);
+      color: var(--primary-color);
+    }
+
+    /* ===== IMAGEM DO PORTFÓLIO ===== */
+    .portrait-wrap {
+      flex: 1;                      /* Ocupa 50% do espaço */
+      position: relative;           /* Necessário para posicionamento absoluto */
+    }
+
+    .portrait {
+      width: 100%;                  /* Ocupa toda a largura disponível */
+      height: auto;
+      display: block;
+      border-radius: 0.5rem;
+      object-fit: cover;            /* Garante que a imagem preencha o espaço */
+    }
+
+    .portrait-border {
+      position: absolute;           /* Sobrepõe a imagem */
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border: 2px solid var(--accent-color);
+      border-radius: 0.5rem;
+      pointer-events: none;         /* Não interfere com interações */
+    }
+
+    .available {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;          /* Botão arredondado */
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .available span {
+      width: 10px;                  /* Ponto de "disponível" */
+      height: 10px;
+      background-color: var(--accent-color);
+      border-radius: 50%;           /* Faz o ponto ficar redondo */
+      animation: pulse 2s infinite; /* Anima o ponto pulsando */
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ===== SEÇÕES PRINCIPAIS ===== */
+    .section {
+      padding: 4rem 0;              /* Espaçamento vertical */
+      border-bottom: 1px solid #e0e0e0; /* Linha separadora */
+    }
+
+    .section.about {
+      background-color: var(--light-color);
+    }
+
+    .section.experience {
+      background-color: var(--light-color);
+    }
+
+    .section-heading {
+      margin-bottom: 3rem;
+    }
+
+    .section-heading.centered {
+      text-align: center;           /* Centraliza o texto */
+    }
+
+    .section-heading h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--font-size-2xl);
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-top: 0.5rem;
+      line-height: 1.3;
+    }
+
+    /* ===== LAYOUT DE DUAS COLUNAS ===== */
+    .two-columns {
+      display: grid;                /* Grid com 2 colunas */
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;           /* Alinha ao topo */
+    }
+
+    /* ===== SEÇÃO SOBRE ===== */
+    .about-copy p {
+      font-size: var(--font-size-large);
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .facts div {
+      text-align: center;
+    }
+
+    .facts strong {
+      display: block;
+      font-size: var(--font-size-large);
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .facts span {
+      font-size: var(--font-size-small);
+      color: var(--secondary-color);
+    }
+
+    /* ===== TIMELINE (Formação) ===== */
+    .timeline {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 100px 1fr; /* Ano + conteúdo */
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-item span {
+      font-size: var(--font-size-large);
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+
+    .timeline-item h3 {
+      font-size: var(--font-size-large);
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item p {
+      color: var(--secondary-color);
+    }
+
+    /* ===== CARDS DE EXPERIÊNCIA ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo */
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: 0.5rem;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid var(--accent-color); /* Marca colorida à esquerda */
+    }
+
+    .card:hover {
+      transform: translateY(-5px); /* Sobe ao passar o mouse */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: rgba(45, 52, 54, 0.1); /* Número em fundo muito claro */
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .card-year {
+      font-size: var(--font-size-small);
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card h3 {
+      font-size: var(--font-size-large);
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      color: var(--secondary-color);
+      font-size: var(--font-size-base);
+    }
+
+    /* ===== SEÇÃO DE COMPETÊNCIAS ===== */
+    .skills-section {
+      background-color: var(--light-color);
+      padding: 4rem 0;
+    }
+
+    .skill-list {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .skill-list div {
+      display: flex;                /* Alinha nome e número lado a lado */
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #d0d0d0;
+    }
+
+    .skill-list span {
+      font-size: var(--font-size-large);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .skill-list b {
+      font-size: var(--font-size-small);
+      color: var(--accent-color);
+      font-weight: 700;
+    }
+
+    .languages {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 2rem;
+      padding: 2rem;
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      border-left: 4px solid var(--accent-color);
+    }
+
+    .languages p {
+      font-weight: 700;
+      color: var(--primary-color);
+      white-space: nowrap;
+    }
+
+    .languages span {
+      background-color: var(--light-color);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      color: var(--primary-color);
+      font-size: var(--font-size-small);
+    }
+
+    /* ===== SEÇÃO DE CONTACTO ===== */
+    .contact {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #1e272e 100%);
+      color: var(--white);
+      padding: 4rem 0;
+    }
+
+    .contact-inner {
+      text-align: center;
+    }
+
+    .contact-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--font-size-2xl);
+      font-weight: 700;
+      margin: 1rem 0 1.5rem;
+      color: var(--white);
+    }
+
+    .contact-inner p {
+      font-size: var(--font-size-large);
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;                /* Coloca links lado a lado */
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      background-color: var(--accent-color);
+      color: var(--white);
+      padding: 1rem 2rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: var(--font-size-large);
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .contact-links a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    footer a:hover {
+      opacity: 0.8;
+    }
+
+    /* ===== ANIMAÇÕES DE REVELAÇÃO ===== */
+    .reveal {
+      opacity: 0;                   /* Começa invisível */
+      animation: revealIn 0.8s ease forwards;
+    }
+
+    @keyframes revealIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px); /* Começa 30px abaixo */
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);    /* Termina na posição original */
+      }
+    }
+
+    /* ===== RESPONSIVIDADE - Telas pequenas ===== */
+    @media (max-width: 768px) {
+      :root {
+        --font-size-2xl: 2rem;
+        --font-size-xl: 1.5rem;
+      }
+
+      .menu-button {
+        display: block;              /* Mostra botão de menu em telas pequenas */
+      }
+
+      .nav-links {
+        display: none;               /* Oculta links em telas pequenas */
+      }
+
+      .nav-links.active {
+        display: flex;               /* Mostra quando menu está ativo */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;      /* Links em coluna */
+        gap: 0;
+        background-color: var(--primary-color);
+        padding: 1rem;
+        z-index: 100;
+      }
+
+      .hero {
+        flex-direction: column;      /* Imagem abaixo do texto */
+        gap: 2rem;
+      }
+
+      .portrait-wrap {
+        max-height: 400px;
+      }
+
+      .two-columns {
+        grid-template-columns: 1fr;  /* Uma coluna em telas pequenas */
+        gap: 2rem;
+      }
+
+      .facts {
+        grid-template-columns: 1fr;  /* Uma coluna para fatos */
+      }
+
+      .hero-actions {
+        flex-direction: column;      /* Botões em coluna */
+      }
+
+      .button {
+        width: 100%;                 /* Botões ocupam toda largura */
+        text-align: center;
+      }
+
+      .contact-links {
+        flex-direction: column;
+      }
+
+      .contact-links a {
+        width: 100%;
+      }
+
+      footer .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .section-heading h2 {
+        font-size: 1.75rem;
+      }
+
+      .timeline-item {
+        grid-template-columns: 80px 1fr;
+        gap: 1rem;
+      }
+
+      .languages {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <!-- ========== HEADER E NAVEGAÇÃO ========== -->
+  <!-- Esta seção contém o cabeçalho com logo, menu de navegação e apresentação inicial -->
   <header class="header" id="inicio">
     <nav class="nav container" aria-label="Navegação principal">
+      <!-- Logo do portfólio: NC com ponto colorido -->
       <a class="logo" href="#inicio">NC<span>.</span></a>
+      
+      <!-- Botão de menu para dispositivos móveis (hambúrguer) -->
       <button class="menu-button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      
+      <!-- Links de navegação da página -->
       <ul class="nav-links">
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#formacao">Formação</a></li>
@@ -23,101 +670,385 @@
       </ul>
     </nav>
 
+    <!-- SEÇÃO HERO - Apresentação principal com foto e introdução -->
     <section class="hero container">
+      <!-- Coluna esquerda: Texto de apresentação -->
       <div class="hero-text reveal">
+        <!-- Eyebrow: Pequeno texto acima do título principal -->
         <p class="eyebrow">Eletricidade instaladora & manutenção</p>
+        
+        <!-- Título principal com nome destacado em vermelho -->
         <h1>Olá, sou<br><span>Nelsa Contente.</span></h1>
+        
+        <!-- Introdução descritiva da profissional -->
         <p class="intro">Profissional responsável, organizada e pronta para aprender, crescer e contribuir com segurança e dedicação em cada oportunidade.</p>
+        
+        <!-- Botões de ação para contacto e ver experiência -->
         <div class="hero-actions">
+          <!-- Botão primário (chama à ação) -->
           <a class="button primary" href="#contacto">Falar comigo</a>
+          <!-- Botão secundário (convida a explorar) -->
           <a class="button secondary" href="#experiencia">Ver experiência</a>
         </div>
       </div>
+
+      <!-- Coluna direita: Foto profissional e informações -->
       <div class="portrait-wrap reveal">
+        <!-- Borda decorativa vermelha ao redor da imagem -->
         <div class="portrait-border"></div>
+        
+        <!-- Imagem profissional: Se não carregar, será mostrada uma alternativa via JavaScript -->
         <img class="portrait" src="assets/nelsa-contente-profissional.png" alt="Retrato profissional de Nelsa Contente">
-        <div class="available"><span></span> Disponível para oportunidades</div>
+        
+        <!-- Badge indicando disponibilidade com ponto pulsante -->
+        <div class="available">
+          <span></span> <!-- Ponto animado que pulsa indicando disponibilidade -->
+          Disponível para oportunidades
+        </div>
       </div>
     </section>
   </header>
 
+  <!-- ========== CONTEÚDO PRINCIPAL ========== -->
   <main>
+    <!-- ===== SEÇÃO SOBRE ===== -->
+    <!-- Apresenta informações pessoais e características principais da profissional -->
     <section class="section about" id="sobre">
       <div class="container two-columns">
+        <!-- Cabeçalho da seção: Eyebrow + Título -->
         <div class="section-heading reveal">
           <p class="eyebrow">Quem sou</p>
           <h2>Energia, responsabilidade e vontade de evoluir.</h2>
         </div>
+
+        <!-- Conteúdo sobre a pessoa: Parágrafos e fatos -->
         <div class="about-copy reveal">
-          <p>Sou moçambicana, natural de Xai-Xai, com formação em eletricidade instaladora e manutenção pelo IFPELAC. Procuro uma oportunidade para aplicar os conhecimentos adquiridos e continuar a desenvolver competências práticas.</p>
+          <!-- Primeiro parágrafo: Origem geográfica e formação técnica -->
+          <p>Sou moçambicana, natural de Xai-Xai, com formação em eletricidade instaladora e manutenção pelo IFPELAC. Procuro uma oportunidade para aplicar os conhecimentos adquiridos e continuar a desenvolver as minhas competências profissionais.</p>
+          
+          <!-- Segundo parágrafo: Qualidades pessoais e relacionais -->
           <p>Destaco-me pelo respeito, pelas boas relações interpessoais, pela organização e pela capacidade de trabalhar em equipa.</p>
+          
+          <!-- Fatos principais em destaque (3 colunas) -->
           <div class="facts">
-            <div><strong>Xai-Xai</strong><span>Localização</span></div>
-            <div><strong>IFPELAC</strong><span>Formação técnica</span></div>
-            <div><strong>Imediata</strong><span>Disponibilidade</span></div>
+            <div>
+              <strong>Xai-Xai</strong>
+              <span>Localização</span>
+            </div>
+            <div>
+              <strong>IFPELAC</strong>
+              <span>Formação técnica</span>
+            </div>
+            <div>
+              <strong>Imediata</strong>
+              <span>Disponibilidade</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ===== SEÇÃO FORMAÇÃO ===== -->
+    <!-- Mostra o percurso académico em ordem cronológica descendente -->
     <section class="section" id="formacao">
       <div class="container">
+        <!-- Cabeçalho centralizado -->
         <div class="section-heading centered reveal">
           <p class="eyebrow">Percurso académico</p>
           <h2>Formação</h2>
         </div>
+
+        <!-- Timeline mostrando formação de 2023 até 2010 -->
         <div class="timeline">
-          <article class="timeline-item reveal"><span>2023</span><div><h3>Eletricidade instaladora e manutenção</h3><p>Curso profissional concluído no IFPELAC.</p></div></article>
-          <article class="timeline-item reveal"><span>2019</span><div><h3>Ensino médio</h3><p>Escola Secundária Ndambine 2000.</p></div></article>
-          <article class="timeline-item reveal"><span>2017</span><div><h3>Ensino básico</h3><p>Escola Secundária Ndambine 2000.</p></div></article>
-          <article class="timeline-item reveal"><span>2010</span><div><h3>Ensino elementar</h3><p>Escola Primária Completa Mao-Tsé-Tung.</p></div></article>
+          <!-- Item 1: Formação profissional recente (2023) -->
+          <article class="timeline-item reveal">
+            <span>2023</span>
+            <div>
+              <h3>Eletricidade instaladora e manutenção</h3>
+              <p>Curso profissional concluído no IFPELAC.</p>
+            </div>
+          </article>
+
+          <!-- Item 2: Ensino médio (2019) -->
+          <article class="timeline-item reveal">
+            <span>2019</span>
+            <div>
+              <h3>Ensino médio</h3>
+              <p>Escola Secundária Ndambine 2000.</p>
+            </div>
+          </article>
+
+          <!-- Item 3: Ensino básico (2017) -->
+          <article class="timeline-item reveal">
+            <span>2017</span>
+            <div>
+              <h3>Ensino básico</h3>
+              <p>Escola Secundária Ndambine 2000.</p>
+            </div>
+          </article>
+
+          <!-- Item 4: Ensino elementar (2010) -->
+          <article class="timeline-item reveal">
+            <span>2010</span>
+            <div>
+              <h3>Ensino elementar</h3>
+              <p>Escola Primária Completa Mao-Tsé-Tung.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
+    <!-- ===== SEÇÃO EXPERIÊNCIA ===== -->
+    <!-- Mostra experiências profissionais e comunitárias em cards com layout responsivo -->
     <section class="section experience" id="experiencia">
       <div class="container">
+        <!-- Cabeçalho da seção -->
         <div class="section-heading reveal">
           <p class="eyebrow">Experiência</p>
           <h2>Participação profissional e comunitária</h2>
         </div>
+
+        <!-- Cards de experiência em grid responsivo (3 colunas em desktop) -->
         <div class="cards">
-          <article class="card reveal"><span class="card-number">01</span><p class="card-year">2023</p><h3>Pré-estágio profissional</h3><p>Experiência de pré-estágio na Chichango Service, com contacto inicial com o ambiente profissional.</p></article>
-          <article class="card reveal"><span class="card-number">02</span><p class="card-year">2023</p><h3>Campanha contra a pólio</h3><p>Participação como registadora, apoiando a organização e o registo da campanha.</p></article>
-          <article class="card reveal"><span class="card-number">03</span><p class="card-year">2018</p><h3>Eleições presidenciais</h3><p>Trabalho como membro de mesa de voto, exercendo funções com responsabilidade e atenção.</p></article>
+          <!-- Card 1: Pré-estágio profissional em 2023 -->
+          <article class="card reveal">
+            <span class="card-number">01</span>
+            <p class="card-year">2023</p>
+            <h3>Pré-estágio profissional</h3>
+            <p>Experiência de pré-estágio na Chichango Service, com contribuição na instalação e manutenção de sistemas elétricos, aplicando conhecimentos práticos adquiridos na formação profissional.</p>
+          </article>
+
+          <!-- Card 2: Campanha contra a pólio em 2023 -->
+          <article class="card reveal">
+            <span class="card-number">02</span>
+            <p class="card-year">2023</p>
+            <h3>Campanha contra a pólio</h3>
+            <p>Participação como registadora, apoiando a organização e o levantamento de dados, demonstrando comprometimento com a saúde pública e o bem-estar comunitário.</p>
+          </article>
+
+          <!-- Card 3: Trabalho eleitoral em 2018 -->
+          <article class="card reveal">
+            <span class="card-number">03</span>
+            <p class="card-year">2018</p>
+            <h3>Eleições presidenciais</h3>
+            <p>Trabalho como membro de mesa de voto, exercendo funções com responsabilidade e ética, garantindo integridade do processo eleitoral e organização eficiente.</p>
+          </article>
         </div>
       </div>
     </section>
 
+    <!-- ===== SEÇÃO COMPETÊNCIAS ===== -->
+    <!-- Mostra as habilidades e idiomas da profissional -->
     <section class="section skills-section">
+      <!-- Primeira parte: Layout com 2 colunas (Cabeçalho + Lista de competências) -->
       <div class="container two-columns">
-        <div class="section-heading reveal"><p class="eyebrow">Competências</p><h2>O que levo para uma equipa.</h2></div>
+        <!-- Cabeçalho à esquerda -->
+        <div class="section-heading reveal">
+          <p class="eyebrow">Competências</p>
+          <h2>O que levo para uma equipa.</h2>
+        </div>
+
+        <!-- Lista de competências à direita (4 competências com números) -->
         <div class="skill-list reveal">
-          <div><span>Responsabilidade</span><b>01</b></div>
-          <div><span>Organização</span><b>02</b></div>
-          <div><span>Trabalho em equipa</span><b>03</b></div>
-          <div><span>Informática na óptica do utilizador</span><b>04</b></div>
+          <div>
+            <span>Responsabilidade</span>
+            <b>01</b>
+          </div>
+          <div>
+            <span>Organização</span>
+            <b>02</b>
+          </div>
+          <div>
+            <span>Trabalho em equipa</span>
+            <b>03</b>
+          </div>
+          <div>
+            <span>Informática na óptica do utilizador</span>
+            <b>04</b>
+          </div>
         </div>
       </div>
+
+      <!-- Seção de idiomas: Mostra as línguas e o nível de proficiência -->
       <div class="container languages reveal">
-        <p>Idiomas</p><span>Português — Excelente</span><span>Changana — Excelente</span><span>Inglês — Razoável</span>
+        <p>Idiomas</p>
+        <span>Português — Excelente</span>
+        <span>Changana — Excelente</span>
+        <span>Inglês — Razoável</span>
       </div>
     </section>
 
+    <!-- ===== SEÇÃO CONTACTO ===== -->
+    <!-- Convida o visitante a entrar em contacto com a profissional -->
     <section class="contact" id="contacto">
       <div class="container contact-inner reveal">
+        <!-- Eyebrow decorativo: "Vamos conversar" -->
         <p class="eyebrow">Vamos conversar</p>
+        
+        <!-- Título principal da seção de contacto -->
         <h2>Estou pronta para a próxima oportunidade.</h2>
+        
+        <!-- Descrição do que o visitante pode fazer -->
         <p>Entre em contacto para oportunidades de trabalho, estágio ou colaboração.</p>
+        
+        <!-- Links de contacto: Números de telefone clicáveis -->
         <div class="contact-links">
+          <!-- Primeiro número de telefone (link tel:) - Abre na aplicação de telefone/WhatsApp -->
           <a href="tel:+258848609307">+258 84 860 9307</a>
+          <!-- Segundo número de telefone (link tel:) -->
           <a href="tel:+258878003547">+258 87 800 3547</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer><div class="container"><p>© <span id="year"></span> Nelsa Contente</p><a href="#inicio">Voltar ao início ↑</a></div></footer>
-  <script src="js/script.js"></script>
+  <!-- ========== FOOTER ========== -->
+  <!-- Rodapé com ano atual e link de retorno ao topo -->
+  <footer>
+    <div class="container">
+      <!-- Nota de copyright com ano dinâmico (atualiza automaticamente) -->
+      <p>© <span id="year"></span> Nelsa Contente</p>
+      <!-- Link para voltar ao topo da página -->
+      <a href="#inicio">Voltar ao início ↑</a>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPT JAVASCRIPT - Funcionalidades interativas ========== -->
+  <script>
+    // ===== FUNCIONALIDADE 1: Atualizar o ano no footer automaticamente =====
+    // Obtém o elemento HTML com id "year" e insere o ano atual
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Exemplo: Se estamos em 2026, mostrará "© 2026 Nelsa Contente"
+
+    // ===== FUNCIONALIDADE 2: Menu responsivo (hambúrguer) =====
+    // Seleciona o botão do menu e a lista de links
+    const menuButton = document.querySelector('.menu-button');
+    const navLinks = document.querySelector('.nav-links');
+
+    // Adiciona um ouvinte ao botão do menu (quando clicado)
+    menuButton.addEventListener('click', function() {
+      // Alterna a classe 'active' na lista de links (mostra/oculta)
+      navLinks.classList.toggle('active');
+      
+      // Alterna o estado aria-expanded (importante para acessibilidade)
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', !isExpanded);
+    });
+
+    // ===== FUNCIONALIDADE 3: Fechar menu ao clicar num link =====
+    // Quando o utilizador clica num link do menu, o menu fecha automaticamente
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        // Remove a classe 'active' para fechar o menu
+        navLinks.classList.remove('active');
+        // Reseta o estado aria-expanded para false
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ===== FUNCIONALIDADE 4: Scroll suave para seções =====
+    // Todos os links que começam com "#" (âncoras internas) têm scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault(); // Evita o comportamento padrão do link
+        
+        // Obtém o alvo (a seção para onde ir)
+        const target = document.querySelector(this.getAttribute('href'));
+        
+        if (target) {
+          // Scroll suave para a seção
+          target.scrollIntoView({
+            behavior: 'smooth',  /* Transição suave em vez de salto instantâneo */
+            block: 'start'       /* Alinha ao topo da tela */
+          });
+        }
+      });
+    });
+
+    // ===== FUNCIONALIDADE 5: Tratamento de imagem em falta =====
+    // Se a imagem do portfólio não for encontrada, exibe uma alternativa com "NC"
+    const portrait = document.querySelector('.portrait');
+    
+    portrait.addEventListener('error', function() {
+      // Se a imagem não carregar, oculta a imagem quebrada
+      this.style.display = 'none';
+      
+      // Cria um placeholder com as iniciais "NC"
+      const placeholder = document.createElement('div');
+      placeholder.style.cssText = `
+        width: 100%;
+        height: 400px;
+        background: linear-gradient(135deg, #2d3436 0%, #1e272e 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        color: white;
+        font-size: 4rem;
+        font-weight: 700;
+        font-family: 'Playfair Display', serif;
+      `;
+      placeholder.textContent = 'NC';
+      
+      // Insere o placeholder no lugar da imagem
+      this.parentElement.insertBefore(placeholder, this);
+    });
+
+    // ===== FUNCIONALIDADE 6: Animações ao rolar a página =====
+    // Elementos com classe 'reveal' aparecem com animação quando se tornam visíveis
+    const observerOptions = {
+      threshold: 0.1,  /* Dispara quando 10% do elemento é visível */
+      rootMargin: '0px 0px -50px 0px' /* Pequeno ajuste para melhor experiência */
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Elemento entrou na vista, adiciona animação de revelação
+          entry.target.style.animation = 'revealIn 0.8s ease forwards';
+          // Para de observar este elemento (já foi animado)
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observa todos os elementos com classe 'reveal' para animação
+    document.querySelectorAll('.reveal').forEach(element => {
+      observer.observe(element);
+    });
+
+    // ===== FUNCIONALIDADE 7: Indicador de página ativa na navegação =====
+    // Destaca o link de navegação que corresponde à seção atual visível
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      // Verifica qual seção está mais visível no viewport
+      ['inicio', 'sobre', 'formacao', 'experiencia', 'contacto'].forEach(id => {
+        const section = document.getElementById(id);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          
+          // Se a seção está no viewport (com margem de 200px), marca como ativa
+          if (scrollY >= sectionTop - 200) {
+            current = id;
+          }
+        }
+      });
+      
+      // Remove a cor de destaque de todos os links
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.style.color = '';
+      });
+      
+      // Adiciona cor de destaque ao link da seção atual
+      if (current) {
+        const activeLink = navLinks.querySelector(`a[href="#${current}"]`);
+        if (activeLink) {
+          activeLink.style.color = 'var(--accent-color)'; /* Muda para vermelho */
+        }
+      }
+    });
+  </script>
 </body>
 </html>
